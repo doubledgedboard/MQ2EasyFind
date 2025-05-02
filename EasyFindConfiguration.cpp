@@ -43,6 +43,7 @@ static const std::vector<std::pair<ConfiguredGroupPlugin, const char*>> s_groupP
 	{ ConfiguredGroupPlugin::Auto, "auto" },
 	{ ConfiguredGroupPlugin::Dannet, "dannet" },
 	{ ConfiguredGroupPlugin::EQBC, "eqbc" },
+	{ ConfiguredGroupPlugin::E3N, "e3n" },
 	{ ConfiguredGroupPlugin::None, "none" },
 };
 
@@ -225,6 +226,7 @@ EasyFindConfiguration::EasyFindConfiguration()
 
 	m_dannetLoaded = IsPluginLoaded("MQ2DanNet");
 	m_eqbcLoaded = IsPluginLoaded("MQ2EQBC");
+	m_e3nLoaded = IsPluginLoaded("MQ2Mono");
 
 	LoadSettings();
 }
@@ -577,6 +579,8 @@ ConfiguredGroupPlugin EasyFindConfiguration::GetActiveGroupPlugin() const
 			return ConfiguredGroupPlugin::Dannet;
 		if (m_eqbcLoaded)
 			return ConfiguredGroupPlugin::EQBC;
+		if (m_e3nLoaded)
+			return ConfiguredGroupPlugin::E3N;
 		break;
 	case ConfiguredGroupPlugin::Dannet:
 		if (m_dannetLoaded)
@@ -585,6 +589,10 @@ ConfiguredGroupPlugin EasyFindConfiguration::GetActiveGroupPlugin() const
 	case ConfiguredGroupPlugin::EQBC:
 		if (m_eqbcLoaded)
 			return ConfiguredGroupPlugin::EQBC;
+		break;
+	case ConfiguredGroupPlugin::E3N:
+		if (m_e3nLoaded)
+			return ConfiguredGroupPlugin::E3N;
 		break;
 	default:
 		break;
@@ -602,5 +610,9 @@ void EasyFindConfiguration::HandlePluginChange(std::string_view pluginName, bool
 	else if (ci_equals(pluginName, "MQ2DanNet"))
 	{
 		m_dannetLoaded = loaded;
+	}
+	else if (ci_equals(pluginName, "MQ2Mono"))
+	{
+		m_e3nLoaded = loaded;
 	}
 }

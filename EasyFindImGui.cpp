@@ -718,6 +718,8 @@ void DrawEasyFindSettingsPanel()
 			ImGui::TextWrapped("DanNet is selected for group commands.");
 		else if (activePlugin == ConfiguredGroupPlugin::EQBC)
 			ImGui::TextWrapped("EQBC is selected for group commands.");
+		else if (activePlugin == ConfiguredGroupPlugin::E3N)
+			ImGui::TextWrapped("E3N is selected for group commands.");
 		else if (activePlugin == ConfiguredGroupPlugin::None)
 		{
 			ImGui::PushStyleColor(ImGuiCol_Text, MQColor(255, 0, 0).ToImU32());
@@ -725,6 +727,8 @@ void DrawEasyFindSettingsPanel()
 				ImGui::TextWrapped("DanNet is not loaded. Load the plugin to use group commands");
 			else if (groupPlugin == ConfiguredGroupPlugin::EQBC)
 				ImGui::TextWrapped("EQBC is not loaded. Load the plugin to use group commands");
+			else if (groupPlugin == ConfiguredGroupPlugin::E3N)
+				ImGui::TextWrapped("E3N is not loaded. Load the plugin to use group commands");
 			else
 				ImGui::TextWrapped("Unable to find supported plugin for group commands. Load a plugin to enable group commands.");
 
@@ -746,7 +750,7 @@ void DrawEasyFindSettingsPanel()
 	bool silentGroupCommands = g_configuration->IsSilentGroupCommands();
 	if (ImGui::Checkbox("Silent Group Commands", &silentGroupCommands))
 		g_configuration->SetSilentGroupCommands(silentGroupCommands);
-	HelpLabel("If checked, eqbc and dannet commands will be squelched.");
+	HelpLabel("If checked, eqbc, dannet, or e3n commands will be squelched.");
 
 	bool verboseMessages = g_configuration->IsVerboseMessages();
 	if (ImGui::Checkbox("Verbose status messages", &verboseMessages))

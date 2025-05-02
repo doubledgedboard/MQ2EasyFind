@@ -67,6 +67,13 @@ void DoGroupCommand(std::string_view command, bool includeSelf)
 		else
 			groupCommand += fmt::format("/bcg /{}", command);
 	}
+	else if (activeGroupPlugin == ConfiguredGroupPlugin::E3N)
+	{
+		if (includeSelf)
+			groupCommand += fmt::format("/e3bcga {}", command);
+		else
+			groupCommand += fmt::format("/e3bcg {}", command);
+	}
 
 	if (!groupCommand.empty())
 	{

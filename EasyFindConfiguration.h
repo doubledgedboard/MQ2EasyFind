@@ -25,7 +25,7 @@ enum class ConfiguredGroupPlugin
 	Auto,
 	EQBC,
 	Dannet,
-
+	E3N,
 	Max,
 };
 const char* GetGroupPluginPreferenceString(ConfiguredGroupPlugin plugin);
@@ -82,6 +82,7 @@ public:
 	// group execution behaviors
 	bool IsEQBCLoaded() const { return m_eqbcLoaded; }
 	bool IsDannetLoaded() const { return m_dannetLoaded; }
+	bool IsE3NLoaded() const { return m_e3nLoaded; }
 
 	ConfiguredGroupPlugin GetPreferredGroupPlugin() const;        // returns user preference.
 	void SetPreferredGroupPlugin(ConfiguredGroupPlugin p);
@@ -110,6 +111,7 @@ private:
 
 	bool m_eqbcLoaded = false;
 	bool m_dannetLoaded = false;
+	bool m_e3nLoaded = false;
 	ConfiguredGroupPlugin m_groupPluginSelection = ConfiguredGroupPlugin::Auto;
 
 	bool m_distanceColumnEnabled = true;
